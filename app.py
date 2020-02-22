@@ -77,9 +77,10 @@ def email_verify():
     print(otp)
     c_otp = request.form.get("otp")
     if otp == int(c_otp):
-        register = user(f_name=f_name,l_name=l_name, email = mail, password = passw)
+        register = user(f_name = f_name,l_name=l_name,email = mail, password = passw)
         db.session.add(register)
         db.session.commit()
+    return redirect("/login")
 
 
 if __name__ == "__main__":
