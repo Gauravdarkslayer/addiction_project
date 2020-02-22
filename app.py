@@ -21,14 +21,13 @@ class user(db.Model):
 def index():
     return render_template("index.html")
 
-
-
 @app.route("/login",methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        mail = request.form["mail"]
+        print(request.form)
+        mail = request.form["email"]
         passw = request.form["passw"]
-        
+        print("I am inside Login Method")
         login = user.query.filter_by(email=mail, password=passw).first()
         if login is not None:
             return "Success in login"
@@ -49,27 +48,36 @@ def register():
         mail = request.form['mail']
         passw = request.form['passw']
 
+
+        c_email = user.query.filter_by(email=mail).first()
+        print(c_email.email)
+        temp=str(c_email.email)
+        if temp==mail:
+            print("Hello I am In")
+            temp={"msg":"User Already Exists"}
+            return render_template('register.html',**temp)
+        else:
         ### SENDING OTP
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.ehlo()
-        server.starttls()
-        server.ehlo()
-        server.login('www.gaurav10bhojwani@gmail.com','inuajyeavvhhcxfo')
-        subject="otp for prevent you"
-        body="DO NOT SHARE THIS OTP WITH ANYONE"+" "+str(otp)
-        msg=f'subject: {subject}\n\n{body}'
-        # global myemail
-        server.sendmail(
-                'www.gaurav10bhojwani@gmail.com',
-                mail,
-                # 'gaurav10me@gmail.com',
-                msg
-            )   
-        # myemail=request.POST.get('email')    
-        print("sent successfully")
-        server.quit()
-        #####OTP SENT
-        return render_template("verify_email.html")
+            server = smtplib.SMTP('smtp.gmail.com', 587)
+            server.ehlo()
+            server.starttls()
+            server.ehlo()
+            server.login('www.gaurav10bhojwani@gmail.com','inuajyeavvhhcxfo')
+            subject="otp for prevent you"
+            body="DO NOT SHARE THIS OTP WITH ANYONE"+" "+str(otp)
+            msg=f'subject: {subject}\n\n{body}'
+            # global myemail
+            server.sendmail(
+                    'www.gaurav10bhojwani@gmail.com',
+                    mail,
+                    # 'gaurav10me@gmail.com',
+                    msg
+                )   
+            # myemail=request.POST.get('email')    
+            print("sent successfully")
+            server.quit()
+            #####OTP SENT
+            return render_template("verify_email.html")
     return render_template("register.html")
 
 
