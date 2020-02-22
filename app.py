@@ -24,7 +24,7 @@ def index():
 @app.route("/login",methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        print("This is request . form",request.data)
+        print("This is request . form",request.form)
         mail = request.form["email"]
         passw = request.form["passw"]
         print("I am inside Login Method")
