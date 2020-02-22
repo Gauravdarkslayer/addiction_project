@@ -31,16 +31,16 @@ def login():
         login = user.query.filter_by(email=mail, password=passw).first()
         if login is not None:
             return "Success in login"
-    return render_template("login.html",["login failed"])
+    return render_template("login.html")
 
 
-uname,mail,passw="","",""
+f_name,l_name,mail,passw="","","",""
 otp = randint(1000,9999)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        global uname,mail,passw
+        global f_name,l_name,mail,passw
         
         f_name = request.form['f_name']
         l_name = request.form['l_name']
@@ -77,7 +77,7 @@ def email_verify():
     print(otp)
     c_otp = request.form.get("otp")
     if otp == int(c_otp):
-        register = user(username = uname, email = mail, password = passw)
+        register = user(f_name=f_name,l_name=l_name, email = mail, password = passw)
         db.session.add(register)
         db.session.commit()
 
