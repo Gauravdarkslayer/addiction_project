@@ -24,14 +24,15 @@ def index():
 @app.route("/login",methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        print(request.form)
+        print("This is request . form",request.data)
         mail = request.form["email"]
         passw = request.form["passw"]
         print("I am inside Login Method")
         login = user.query.filter_by(email=mail, password=passw).first()
         if login is not None:
             return "Success in login"
-    print("something not rightttttttttttttttttttttttt")        
+    else:        
+        print("something not rightttttttttttttttttttttttt")        
     return render_template("login.html")
 
 
@@ -90,7 +91,6 @@ def email_verify():
         register = user(f_name = f_name,l_name=l_name,email = mail, password = passw)
         db.session.add(register)
         db.session.commit()
-        print("SUCESSSSSSSSSSSSSSSSSSSSSSSSSSSs")
     return redirect("/login")
 
 
