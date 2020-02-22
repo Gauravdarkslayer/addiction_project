@@ -5,7 +5,7 @@ import smtplib
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/Wolverine/Desktop/addiction_project/database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/devansh/Desktop/Addiction/addiction_project/database.db'
 db = SQLAlchemy(app)
 
 
@@ -31,7 +31,7 @@ def login():
         login = user.query.filter_by(email=mail, password=passw).first()
         if login is not None:
             return "Success in login"
-    return render_template("login.html",["login failed"])
+    return render_template("login.html")
 
 
 uname,mail,passw="","",""
