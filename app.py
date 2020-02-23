@@ -48,11 +48,17 @@ def login():
         mail = request.form["email"]
         passw = request.form["passw"]
         print("I am inside Login Method")
-        login = user.query.filter_by(email=mail, password=passw).first()
+        login = user.query.filter_by(email=mail).first()
         if login is not None:
-            return render_template("Submit_Request.html")
+            exact_password=login.password
+            if exact_password == passw:
+                return render_template("Submit_Request.html")
+            else:
+                temp={"msg":"Password Is Incorrect Please Try Again !"}
+                return render_template("login.html",**temp)
         else:
-            return render_template("login.html")
+            temp={"msg":"Email ID is not registered Please Sign Up"}
+            return render_template("login.html",**temp)
     else:        
         return render_template("login.html")
 
