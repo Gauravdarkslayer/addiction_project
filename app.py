@@ -2,6 +2,8 @@ from flask import Flask,render_template,flash, redirect,url_for,session,logging,
 from flask_sqlalchemy import SQLAlchemy
 from random import randint
 import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 
 app = Flask(__name__)
@@ -47,7 +49,7 @@ def login():
         print("This is request . form",request.form)
         mail = request.form["email"]
         passw = request.form["passw"]
-        print("I am inside Login Method")
+        # print("I am inside Login Method")
         login = user.query.filter_by(email=mail).first()
         if login is not None:
             exact_password=login.password
@@ -97,7 +99,6 @@ def register():
             server.sendmail(
                     'www.gaurav10bhojwani@gmail.com',
                     mail,
-                    # 'gaurav10me@gmail.com',
                     msg
                 )   
             # myemail=request.POST.get('email')    
@@ -120,9 +121,46 @@ def email_verify():
     return redirect("/login")
 
 
-@app.route("/submit_req")
+@app.route("/submit_req",methods=["GET","POST"])
 def submit_req():
-    return render_template("login.html")
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.ehlo()
+    server.starttls()
+    server.ehlo()
+    server.login('www.gaurav10bhojwani@gmail.com','inuajyeavvhhcxfo')
+    # subject="Request approval for PREVENT YOU"
+    
+    html="""
+        <html>
+            <body>
+                Hi
+                Your meeting schedule <p style="color:red;">30-march-2020 Monday 9:00am</p> 
+            <br>Pleasure to have you.
+                
+            </body>
+    </html>
+    """
+    mail = request.form['contact_email']
+    message = MIMEMultipart("alternative")
+    message["Subject"] = "Request approval for PREVENT YOU"
+    message["From"] = "www.gaurav10bhojwani@gmail.com"
+    message["To"] = mail
+
+    part2 = MIMEText(html, "html")
+    message.attach(part2)
+
+    # msg=f'subject: {subject}\n\n{body}'
+    
+    server.sendmail(
+            'www.gaurav10bhojwani@gmail.com',
+            mail,
+            message.as_string()
+        )   
+    # myemail=request.POST.get('email')    
+    print("sent successfully")
+    server.quit()
+    
+    return "<h1>Your request sent successfully</h2>"
 
 if __name__ == "__main__":
     db.create_all()
