@@ -5,7 +5,7 @@ import smtplib
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/Wolverine/Desktop/addiction_project/database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/devansh/Desktop/Addiction/addiction_project/database.db'
 # 'sqlite:////Users/devansh/Desktop/Addiction/addiction_project/database.db'
 db = SQLAlchemy(app)
 
@@ -16,6 +16,10 @@ class user(db.Model):
     l_name = db.Column(db.String(80))
     email = db.Column(db.String(120))
     password = db.Column(db.String(80))
+
+@app.route("/testing")
+def testing():
+    return render_template("request_submitted.html")
 
 @app.route("/")
 def index():
