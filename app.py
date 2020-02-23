@@ -5,7 +5,7 @@ import smtplib
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/Wolverine/Desktop/addiction_project/database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/devansh/Desktop/Addiction/addiction_project/database.db'
 # 'sqlite:////Users/devansh/Desktop/Addiction/addiction_project/database.db'
 db = SQLAlchemy(app)
 
@@ -51,9 +51,7 @@ def register():
 
 
         c_email = user.query.filter_by(email=mail).first()
-        print(c_email.email)
-        temp=str(c_email.email)
-        if temp==mail:
+        if c_email is not None:
             print("Hello I am In")
             temp={"msg":"User Already Exists"}
             return render_template('register.html',**temp)
