@@ -5,7 +5,7 @@ import smtplib
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/devansh/Desktop/Addiction/addiction_project/database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/Wolverine/Desktop/addiction_project/database.db'
 # 'sqlite:////Users/devansh/Desktop/Addiction/addiction_project/database.db'
 db = SQLAlchemy(app)
 
@@ -25,10 +25,17 @@ def index():
 def about():
     return render_template("about.html")
 
-@app.route("/request")
-def request():
+@app.route("/request1")
+def request1():
     return render_template("Submit_Request.html")
 
+@app.route("/signup")
+def signup():
+    return render_template("register.html")
+
+@app.route("/logout")
+def logout():
+    return render_template("index.html")
 
 @app.route("/login",methods=["GET", "POST"])
 def login():
@@ -39,15 +46,14 @@ def login():
         print("I am inside Login Method")
         login = user.query.filter_by(email=mail, password=passw).first()
         if login is not None:
-            return "Success in login"
+            return render_template("Submit_Request.html")
     else:        
-        print("something not rightttttttttttttttttttttttt")        
-    return render_template("login.html")
+        return render_template("login.html")
 
 
 f_name,l_name,mail,passw="","","",""
 otp = randint(1000,9999)
-
+print(otp)
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -100,6 +106,10 @@ def email_verify():
         db.session.commit()
     return redirect("/login")
 
+
+@app.route("/submit_req")
+def submit_req():
+    
 
 if __name__ == "__main__":
     db.create_all()
