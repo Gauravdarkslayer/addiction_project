@@ -1,31 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-    <title>Login - Register Form | Flask</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Inner Engineering</title>
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-</head>
-<body>
-    <div class="container">
-        <div class="row" style="margin-top: 40px">
-            <div class="col-sm-6">
-                <ul>
-                    <li class="col-sm-6"><a href="/login" class="btn form-control btn-success">Login</a></li>
-                    <li class="col-sm-6"><a href="/register" class="btn form-control btn-primary">Register</a></li>
-                </ul>
+    <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" />
+    <link rel="stylesheet" href="../static/index_Files/css/all.min.css" />
+    <link rel="stylesheet" href="../static/index_Files/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../static/index_Files/css/templatemo-style.css" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row tm-brand-row">
+        <div class="col-lg-4 col-10">
+          <div class="tm-brand-container">
+            <div class="tm-brand-texts">
+              <h1 class="text-uppercase tm-brand-name">Prevent You</h1>
             </div>
+          </div>
         </div>
+        <div class="col-lg-8 col-2 tm-nav-col">
+          <div class="tm-nav">
+            <nav class="navbar navbar-expand-lg navbar-light tm-navbar">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto mr-0">
+                  <li class="nav-item active">
+                    <div class="tm-nav-link-highlight"></div>
+                    <a class="nav-link" href="/"
+                      >Home <span class="sr-only">(current)</span></a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <div class="tm-nav-link-highlight"></div>
+                    <a class="nav-link" href="/about">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <div class="tm-nav-link-highlight"></div>
+                    <a class="nav-link" href="/request">Request</a>
+                  </li>
+                  <li class="nav-item">
+                    <div class="tm-nav-link-highlight"></div>
+                    <a class="nav-link" href="/signup">Sign Up</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="row tm-welcome-row">
+        <div class="col-12 tm-page-cols-container">
+          <div class="tm-page-col-left tm-welcome-box tm-bg-primary">
+            <p class="tm-welcome-text">
+              <em>"We provides De-Addiction services through an inpatient as well as outpatient program.
+                 Our professional staff work through various methods to help addicts recover."</em>
+            </p>
+          </div>
+          <div class="tm-page-col-right">
+            <div
+              class="tm-welcome-parallax"
+              data-parallax="scroll"
+              data-image-src="../static/index_Files/img/drugs-and-addiction.jpg"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <section class="row tm-pt-4 tm-pb-6">
+        <div class="col-12 tm-page-cols-container">
+          <div class="tm-page-col-right">
+            <h2 class="tm-text-secondary tm-mb-5">
+              Introduction To De-Addiction
+            </h2>
+            <p class="tm-mb-6">
+              "Prevent You" has been visionary in the concept of service to mankind with its various initiatives.
+              <strong>Providing deaddiction</strong> and <strong>Rehabiliatation</strong> to patients suffering from alcohol use disorder (alcohol dependence/alcoholism) and nicotine addiction is another such initiative.
+              
+            </p>
+            <p class="mb-0">
+              <strong>Alcohol and Tobacco</strong> are one of the worst chemicals that cause many serious and terminal illnesses. One such disease associated with their use is addiction. 
+              It is known since last 80 years that addiction is a <strong>chronic and progressive illness</strong>.
+              the concept has been endorsed by <Strong>World Health Organization</Strong>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="tm-page-col-right">
+        <div class="row tm-pt-7 tm-pb-6">
+          <div class="col-md-6 tm-home-section-2-left">
+            <div
+              class="img-fluid tm-mb-4 tm-small-parallax"
+              data-parallax="scroll"
+              data-image-src="../static/index_Files/img/addictions_image.jpg"></div>
+            <div>
+              <h3 class="tm-text-secondary tm-mb-4">
+                Our Services
+              </h3>
+              <p class="tm-mb-5">
+                A day at "Prevent You" involves a variety of activities that are well planned out and helpful to the patient.
+              </p>
+              <ul class="tm-list-plus">
+                <li>Drug Addiction Treatment</li>
+                <li>Yoga and Meditation</li>
+                <li>Residential Rehabilitation</li>
+                <li>Substance Abuse Counselling</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 tm-home-section-2-right">
+            <div
+              class="img-fluid tm-mb-4 tm-small-parallax"
+              data-parallax="scroll"
+              data-image-src="../static/index_Files/img/joy1.jpg"></div>
+            <div>
+              <h3 class="tm-text-secondary tm-mb-4">
+                Are you Suffering or not ?
+              </h3>
+              <p class="tm-section-2-text">
+                How to Know Whether you are Suffering From Alcoholism or not?
+              </p><br>
+              <ul class="tm-list-plus">
+                <li>Social withdrawal.</li>
+                <li>Unusual mood changes.</li>
+                <li>Poor physical hygiene.</li>
+                <li>Eyes that are red or watery.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- row -->
+
+      
+      
     </div>
 
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</body>
+    <script src="../static/index_Files/js/jquery.min.js"></script>
+    <script src="../static/index_Files/js/parallax.min.js"></script>
+    <script src="../static/index_Files/js/bootstrap.min.js"></script>
+  </body>
 </html>

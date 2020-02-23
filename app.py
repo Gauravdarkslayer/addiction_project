@@ -21,6 +21,15 @@ class user(db.Model):
 def index():
     return render_template("index.html")
 
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+@app.route("/request")
+def request():
+    return render_template("Submit_Request.html")
+
+
 @app.route("/login",methods=["GET", "POST"])
 def login():
     if request.method == "POST":
