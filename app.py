@@ -47,6 +47,10 @@ def login():
         login = user.query.filter_by(email=mail, password=passw).first()
         if login is not None:
             return render_template("Submit_Request.html")
+        else:
+            temp={"msg":"User doesn't Exists"}
+
+            return render_template("login.html",**temp)    
     else:        
         return render_template("login.html")
 
@@ -109,7 +113,7 @@ def email_verify():
 
 @app.route("/submit_req")
 def submit_req():
-    
+    return render_template("login.html")
 
 if __name__ == "__main__":
     db.create_all()
