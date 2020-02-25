@@ -8,7 +8,7 @@ from flask import *
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/hp/Desktop/addiction_project-master/database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/devansh/Desktop/Addiction/addiction_project/database.db'
 app.secret_key = "as435djklfgnasrjklg"  
 # 'sqlite:////Users/devansh/Desktop/Addiction/addiction_project/database.db'
 db = SQLAlchemy(app)
