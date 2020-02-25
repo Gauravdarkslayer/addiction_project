@@ -43,6 +43,7 @@ def signup():
 
 @app.route("/logout")
 def logout():
+    session.clear()
     return render_template("index.html")
 
 @app.route("/login",methods=["GET", "POST"])
@@ -133,6 +134,10 @@ def submit_req():
     server.login('www.gaurav10bhojwani@gmail.com','inuajyeavvhhcxfo')
     # subject="Request approval for PREVENT YOU"
     
+    name=request.form['name']
+    gender=request.form['gender']
+    title=request.form['request_title']
+    description=request.form['request_description']
     html="""
         <html>
             <body>
@@ -160,7 +165,34 @@ def submit_req():
             message.as_string()
         )   
     # myemail=request.POST.get('email')    
-    print("sent successfully")
+    print("Mail to user sent successfully")
+    admin_html=f"""
+                <html>
+                    <body>
+                        You have patient waiting for you following are the details <br>
+                        <b>Name</b> :-  <b>{name} </b><br>
+                        <b>Gender</b> :-  <b>{gender} </b><br>
+                        <b>Request Title</b> :-  <b>{title} </b><br>
+                        <b>Description</b> :-  <b>{description} </b><br><br> 
+                        <b>Your meeting has been scheduled on 30-march-2020 Monday 9:00am with the patient</b>
+                    </body>
+                </html>
+                """
+    admin_message=MIMEMultipart("alternative")
+    admin_message['Subject']="Request from Patient"
+    admin_message['From']="www.gaurav10bhojwani@gmail.com"
+    admin_message["To"]="devanshsoni108@gmail.com"
+
+    part3=MIMEText(admin_html,"html")
+    admin_message.attach(part3)
+
+    server.sendmail(
+            'www.gaurav10bhojwani@gmail.com',
+            "devanshsoni108@gmail.com",
+            admin_message.as_string()
+        ) 
+    print("Mail sent to admin Sucessfull")
+
     server.quit()
     
     return render_template("request_submitted.html")
