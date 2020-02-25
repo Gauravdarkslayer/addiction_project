@@ -4,10 +4,12 @@ from random import randint
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from flask import *  
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/devansh/Desktop/Addiction/addiction_project/database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/hp/Desktop/addiction_project-master/database.db'
+app.secret_key = "as435djklfgnasrjklg"  
 # 'sqlite:////Users/devansh/Desktop/Addiction/addiction_project/database.db'
 db = SQLAlchemy(app)
 
@@ -54,6 +56,7 @@ def login():
         if login is not None:
             exact_password=login.password
             if exact_password == passw:
+                session['email']=mail  
                 return render_template("Submit_Request.html")
             else:
                 temp={"msg":"Password Is Incorrect Please Try Again !"}
@@ -140,7 +143,7 @@ def submit_req():
             </body>
     </html>
     """
-    mail = request.form['contact_email']
+    mail = session['email']  
     message = MIMEMultipart("alternative")
     message["Subject"] = "Request approval for PREVENT YOU"
     message["From"] = "www.gaurav10bhojwani@gmail.com"
@@ -160,7 +163,7 @@ def submit_req():
     print("sent successfully")
     server.quit()
     
-    return "<h1>Your request sent successfully</h2>"
+    return render_template("request_submitted.html")
 
 if __name__ == "__main__":
     db.create_all()
