@@ -8,7 +8,7 @@ from flask import *
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/devansh/Desktop/Addiction/addiction_project/database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/Wolverine/Desktop/addiction_project/database.db'
 app.secret_key = "as435djklfgnasrjklg"  
 # 'sqlite:////Users/devansh/Desktop/Addiction/addiction_project/database.db'
 db = SQLAlchemy(app)
@@ -71,13 +71,14 @@ def login():
 
 
 f_name,l_name,mail,passw="","","",""
-otp = randint(1000,9999)
-print(otp)
+otp = 0
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        global f_name,l_name,mail,passw
-        
+        global f_name,l_name,mail,passw,otp
+        otp=randint(1000,9999)
+        print(otp)
         f_name = request.form['f_name']
         l_name = request.form['l_name']
         mail = request.form['mail']
@@ -116,7 +117,7 @@ def register():
 @app.route("/email_verify",methods=["GET","POST"])
 def email_verify():
     global otp
-    print(otp)
+    # print(otp)
     c_otp = request.form.get("otp")
     if otp == int(c_otp):
         register = user(f_name = f_name,l_name=l_name,email = mail, password = passw)
